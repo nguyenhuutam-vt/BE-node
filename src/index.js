@@ -1,59 +1,21 @@
 
 
-// app.listen(port,()=>{
-//     console.log(`Home Work ${port}`)
-// })
-
-// // q2
-// app.post('/api/writeToFile', (req, res) => {
-//     const data = JSON.stringify(req.body);
-
-//     fs.writeFile("output.json", data, (err) => {
-//         if (err) {
-//             console.error(err);
-//             res.status(500).send("Error writing data to file");
-//         } else {
-//             res.send("Data written to file successfully");
-//         }
-//     });
-// });
-
-// app.get('/api/getAllData', (req, res) => {
-//     fs.readFile("output.json", (err, data) => {
-//         if (err) {
-//             console.error(err);
-//             res.status(500).send("Error reading data from file");
-//         } else {
-//             const jsonData = JSON.parse(data);
-//             res.send(jsonData);
-//         }
-//     });
-// });
-// app.get('/api/getDataByCountry/:country', (req, res) => {
-//     const country = req.params.country;
-
-//     fs.readFile("output.json", (err, data) => {
-//         if (err) {
-//             console.error(err);
-//             res.status(500).send("Error reading data from file");
-//         } else {
-//             const jsonData = JSON.parse(data);
-//             const filteredData = jsonData.filter((item) => item.country === country);
-//             res.send(filteredData);
-//         }
-//     });
-// });
-
-
 const express = require('express')
 const app = express()
 const port = 8000
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
-
+const playerRoute = require("./monster/monster");
+const monster = require("./monster/player");
 app.get('/',(req,res)=>{
     res.send('HomeWork')
 })
+
+
+
+app.use(playerRoute);
+app.use(monster)
+
 
 
 app.listen(port, () => {
@@ -62,3 +24,46 @@ app.listen(port, () => {
 
 const outputRouter = require('./router/output')
 app.use('/v1/',outputRouter)
+
+
+const userMiddle = require('./Middleware/user')
+const { players, monsters } = require('./data/database')
+app.use('/v1/',userMiddle)
+
+
+app.put('/attack', (req, res) => {
+    const { player, monster } = req.body;
+
+    const pIndex = players.findIndex(p => p.name === player);
+    const mIndex = monsters.findIndex(m => m.name === monster);
+
+    const p = players[pIndex];
+    const m = monsters[mIndex];
+
+    p.health = p.health - m.attack;
+    m.health = m.health - p.attack;
+
+    if (m.health <= 0) {
+        m.health = 0;
+        m.status = 'death';
+    }
+
+    if (p.health <= 0) {
+        p.health = 0;
+        p.status = 'death';
+    }
+
+    // Update lại mảng
+    players[pIndex] = p;
+    monsters[mIndex] = m;
+
+    
+    res.json({
+        player: p,
+        monster: m,
+    });
+})
+
+// const monster = require("./monster/monster")
+// app.use(monster)
+
