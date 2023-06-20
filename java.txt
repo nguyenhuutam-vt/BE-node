@@ -1,0 +1,5 @@
+biến là gi ? là một vị trí trong memory , giữ giá trị trong java
+kieu du lieu string trong java co phai wrapper type k?
+string k phai wrapper . String la mot lop trong java
+wrapper type trong java la cac lop dc sử dụng để đóng gói các kiểu dữ liệu nguyên thủy thành các đối tượng . wrapper chủ yếu đc thực các
+thuật toán

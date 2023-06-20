@@ -1,0 +1,34 @@
+{
+    "school":"Vo truong toan",
+    "class":[
+        {
+            "classID":1,
+            "name":"A2",
+            "teacher" :"Hoang Anh vu",
+            "students":[
+                {
+                    "studentID":1,
+                    "name":"Nguyen Huu Tam"
+                }
+                
+
+            ]
+        },
+        {
+            "classID":2,
+            "name":"A3",
+            "teacher" :"Hoang Anh Tu",
+            "students":[
+                {
+                    "studentID":1,
+                    "name":"Nguyen Huu Vam"
+                },
+                {
+                    "studentID":2,
+                    "name":"Nguyen Huu Dinh"
+                }
+
+            ]
+        }
+    ]
+}

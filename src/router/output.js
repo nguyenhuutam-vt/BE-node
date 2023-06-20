@@ -21,6 +21,7 @@ router.get('/getAll',(req,res)=>{
 
 router.get('/getP',outputController.getAllBook)
 
+
 // router.get('/country/:name',(req,res,next)=>{
 //     const {name} = req.params;
 //     const countryy = country.children.children.children.children.find(m=>m.country===name);

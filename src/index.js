@@ -5,6 +5,7 @@ const app = express()
 const port = 8000
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
+const country = require('../output.json')
 const playerRoute = require("./monster/monster");
 const monster = require("./monster/player");
 app.get('/',(req,res)=>{
@@ -62,6 +63,23 @@ app.put('/attack', (req, res) => {
         player: p,
         monster: m,
     });
+})
+
+app.use('/country',(req,res)=>{
+    const classes = country.children
+    // for (let i = 0; i < classes.length; i++) {
+    //     const children = classes.children
+    //     for (let y = 0; y< children.length; y++){
+    //         res.send(JSON.stringify(children[y]))
+    //     }
+     
+    // }
+    classes.map((chil)=>{
+        const child = chil.children
+        child.map((child1)=>{
+          res.send(child1)
+        })
+    })
 })
 
 // const monster = require("./monster/monster")
