@@ -1,2 +1,5 @@
-package PACKAGE_NAME;public class InterfaceCar {
+interface InterfaceCar {
+    void start();
+    void stop();
+    void drive(double distance);
 }

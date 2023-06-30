@@ -3,3 +3,122 @@ kieu du lieu string trong java co phai wrapper type k?
 string k phai wrapper . String la mot lop trong java
 wrapper type trong java la cac lop dc sử dụng để đóng gói các kiểu dữ liệu nguyên thủy thành các đối tượng . wrapper chủ yếu đc thực các
 thuật toán
+class la khung 1 ngôi nhà 
+Tính trừu tượng trong Java là tính chất không thể hiện cụ thể mà chỉ nêu tên vấn đề , k dc build, chi khai ten method , k cai dat
+
+Lớp trừu tượng (Abstract class)
+Lớp trừu tượng là lớp được khai báo với từ khóa abstract đứng trước tên của lớp.
+Nếu 1 lớp được khai báo là 1 lớp trừu tượng thì chúng ta không thể dùng trực tiếp nó để tạo ra đối tượng mà phải viết một lớp kế thừa của lớp trừu tượng đó.
+Lớp trừu tượng có thể có hoặc không có phương thức trừu tượng. Nếu một lớp có ít nhất 1 phương thức trừu tượng thì lớp đó phải được khai báo là lớp trừu tượng.
+Những lớp là lớp trừu tượng cũng không cần có phương thức khởi tạo.
+Một khi có một lớp nào đó kế thừa lớp trừu tượng thì lớp con đó bắt buộc phải override lại nội dung tất cả các phương thức trừu tượng có trong lớp đó.
+
+
+Trong Java, interface là một kiểu phần tử trừu tượng, giúp định nghĩa các phương thức và thuộc tính mà các lớp khác có thể triển khai. 
+Interface chỉ chứa các khai báo phương thức, không chứa bất kỳ định nghĩa cụ thể nào của phương thức.
+public interface MyInterface {
+   // Khai báo phương thức mà các lớp triển khai sẽ phải có
+   void method1();
+   void method2();
+}
+
+Các lớp triển khai (implementing class) của một interface phải cung cấp mã cho tất cả các phương thức được khai báo trong interface đó. Để triển khai một interface, ta sử dụng từ khóa implements như sau:
+public class MyClass implements MyInterface {
+   // Phải cung cấp mã cho cả method1() và method2()
+   public void method1() {
+      System.out.println("Implementing method 1");
+   }
+   
+   public void method2() {
+      System.out.println("Implementing method 2");
+   }
+}
+
+
+Trong Java, từ khóa abstract được sử dụng để chỉ định rằng một lớp hoặc phương thức là trừu tượng (không cung cấp mã thực hiện).
+
+Lớp trừu tượng không thể được khởi tạo. Nó chỉ được sử dụng như là lớp cha để kế thừa cho các lớp con.
+Phương thức trừu tượng được khai báo trong lớp trừu tượng và không có mã thực thi. Các lớp con của lớp trừu tượng phải cung cấp mã thực thi cho các phương thức này.
+Trong Java, từ khóa abstract được sử dụng để chỉ định rằng một lớp hoặc phương thức là trừu tượng (không cung cấp mã thực hiện).
+
+public abstract class MyAbstractClass {
+   // Khai báo phương thức trừu tượng
+   public abstract void myMethod();
+}
+
+public class MyConcreteClass extends MyAbstractClass {
+   // Phải cung cấp mã cho phương thức myMethod()
+   public void myMethod() {
+      System.out.println("Implementing myMethod()");
+   }
+}
+
+
+interface la khai bao nhung dac tinh hanh dong cua chuc nang ( còn bên interface hành động wa class khác thì car sẽ implement các hđ của nó )
+con abstract la khai bao dac điêm chung để wa bên extend sẽ kế thừa đc nhưng đăc tinh như car ( có 4 bánh , màu sắc , mà khác giá thì bên class extend sẽ thêm giá ) 
+
+
+Trong Java, tính đóng gói (encapsulation) là một khái niệm quan trọng trong lập trình hướng đối tượng. 
+Nó cho phép giới hạn việc truy cập trực tiếp vào các thành phần của một đối tượng và yêu cầu sử dụng các phương thức để hoạt động với chúng.
+public class MyObject {
+   private int myPrivateVariable;
+   
+   public void setMyPrivateVariable(int value) {
+      myPrivateVariable = value;
+   }
+   
+   public int getMyPrivateVariable() {
+      return myPrivateVariable;
+   }
+}
+
+Inheritance (kế thừa) là một khái niệm quan trọng trong lập trình hướng đối tượng của Java, 
+cho phép ta tái sử dụng mã có sẵn bằng cách tạo ra các lớp mới từ các lớp đã có.
+ Khi một lớp kế thừa từ một lớp khác, nó được định nghĩa như một phiên bản mở rộng của lớp cơ sở này.
+thường là private
+public class Animal {
+   public void makeSound() {
+      System.out.println("The animal makes a sound");
+   }
+}
+
+public class Cat extends Animal {
+   public void makeSound() {
+      System.out.println("Meow");
+   }
+}
+
+public class Dog extends Animal {
+   public void makeSound() {
+      System.out.println("Woof");
+   }
+}
+
+Polymorphism (đa hinh )	là một khái niệm quan trọng trong lập trình hướng đối tượng của Java, cho phép các đối tượng được xử lý như nhau bất kể chúng thuộc về lớp nào. Điều này cho phép ta viết mã tổng quát và có thể tái sử dụng nó cho nhiều trường hợp khác nhau.
+
+Trong Java, polymorphism được thực hiện thông qua hai cơ chế: Overloading và Overriding.
+
+Overriding là việc định nghĩa lại một phương thức trong lớp con có cùng tên, kiểu dữ liệu và tham số với phương thức đã được định nghĩa trong lớp cơ sở. 
+Khi gọi phương thức từ đối tượng của lớp con, Java sẽ sử dụng phương thức đã được định nghĩa lại trong lớp con thay vì phương thức ở lớp cơ sở.
+public class Animal {
+   public void makeSound() {
+      System.out.println("The animal makes a sound");
+   }
+}
+
+public class Cat extends Animal {
+   @Override
+   public void makeSound() {
+      System.out.println("Meow");
+   }
+}
+
+public class Dog extends Animal {
+   @Override
+   public void makeSound() {
+      System.out.println("Woof");
+   }
+}
+
+
+
