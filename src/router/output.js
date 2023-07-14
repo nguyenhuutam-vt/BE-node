@@ -3,14 +3,14 @@ const router = express.Router();
 const fs = require('fs');
 const outputController = require('../controller/output')
 // router.get('/outputs',outputController.getAllBook);
-
-router.get('/getAll',(req,res)=>{
-    fs.readFile("output.json",(err,data)=>{
-        if(err){
+//Ex1
+router.get('/getAll', (req, res) => {
+    fs.readFile("output.json", (err, data) => {
+        if (err) {
             console.error(err);
             res.status(500).send("Error reading data from file");
         }
-        else{
+        else {
             const jsonData = JSON.parse(data);
             res.send(jsonData);
         }
@@ -32,7 +32,7 @@ router.get('/getAll',(req,res)=>{
 //     });
 // });
 
-router.post('/createUser',(req,res)=>{
+router.post('/createUser', (req, res) => {
     const data = JSON.stringify(req.body);
     fs.writeFile("output.json", data, (err) => {
         if (err) {
